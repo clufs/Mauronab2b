@@ -1,0 +1,353 @@
+/* ========== Reset & Tokens ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #fdfcfb;
+  --foreground: #2d2d2d;
+  --primary: #1a5463;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f1ea;
+  --muted-foreground: #6b6458;
+  --accent: #d4a574;
+  --border: rgba(26, 84, 99, 0.15);
+
+  /* útil si querés compensar el header fijo */
+  --header-height: 64px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+}
+
+/* ========== Header ========== */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0; /* top:0; left:0; right:0 */
+  background-color: rgba(253, 252, 251, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari */
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+  height: var(--header-height);
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary);
+}
+
+.header-logo img {
+  height: 3rem;
+  width: 3rem;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav a {
+  color: var(--muted-foreground);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--foreground);
+}
+
+.mobile-menu {
+  display: none;
+  font-size: 30px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+  .mobile-menu {
+    display: block;
+  }
+}
+
+/* ========== Hero (común a desktop y mobile) ========== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* deja espacio por el header fijo */
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: 5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: var(--background);
+}
+
+.hero-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+
+  /* contenido por encima del video */
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-content h2 {
+  color: var(--foreground);
+  max-width: 40rem;
+}
+
+.hero-content p {
+  color: var(--muted-foreground);
+  max-width: 32rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.2s ease,
+    background-color 0.2s ease, border-color 0.2s ease;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 8px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+.btn-outline:hover {
+  background-color: rgba(26, 84, 99, 0.05);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: #fff;
+}
+.btn-accent:hover {
+  opacity: 0.9;
+}
+
+/* Imagen de la derecha (solo desktop) */
+.hero-image {
+  position: relative;
+  aspect-ratio: 4 / 5;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ========== Video de fondo (solo mobile) ========== */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  display: none; /* se muestra en mobile */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.28) 0%,
+    rgba(0, 0, 0, 0.2) 35%,
+    rgba(0, 0, 0, 0.28) 100%
+  );
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .hero-media {
+    display: block;
+  }
+
+  .hero {
+    padding-top: calc(var(--header-height) + 1.5rem);
+    padding-bottom: 4rem;
+    min-height: 80vh;
+  }
+
+  /* texto claro sobre video */
+  .hero-content h2 {
+    color: #fff;
+  }
+  .hero-content p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .btn-outline {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* 1 columna y ocultar imagen lateral */
+  .hero-container {
+    grid-template-columns: 1fr;
+  }
+  .hero-image {
+    display: none;
+  }
+
+  /* botones en columna si querés */
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+
+/* Parte del grid de productos */
+
+.products {
+  padding: 5rem 1.5rem;
+  background-color: var(--secondary);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  color: var(--foreground);
+}
+
+.section-header p {
+  color: var(--muted-foreground);
+}
+
+/* product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(1 minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  cursor: pointer;
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 1;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background-color: white;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.product-category {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.product-name {
+  color: var(--foreground);
+}
+
+.product-min-order {
+  color: var(--muted-foreground);
+  opacity: 0.7;
+  font-size: 0.875rem;
+}
+
+/* ≥ 640px: 3 columnas */
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ≥ 1024px: 4 columnas (opcional) */
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
