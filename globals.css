@@ -24,6 +24,7 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
+
   line-height: 1.6;
 }
 
@@ -340,6 +341,10 @@ body {
 
 /* ≥ 640px: 3 columnas */
 @media (min-width: 640px) {
+  .products {
+    padding: 5rem 10rem;
+  }
+
   .product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -349,5 +354,225 @@ body {
 @media (min-width: 1024px) {
   .product-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.aboutus-section {
+  /* background-color: var(--primary); */
+  /* color: var(--background);s */
+
+  padding: 5rem 1.5rem;
+}
+
+.aboutus-section p {
+  color: var(--muted-foreground);
+}
+.aboutus-section h2 {
+  color: var(--foreground);
+}
+
+.dif-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3rem 0.5rem;
+}
+
+.dif-container h3 {
+  font-size: medium;
+  color: var(--foreground);
+  font-weight: 400;
+}
+
+.dif-container p {
+  font-weight: bold;
+  color: var(--muted-foreground);
+}
+
+/* parte de la imagen/contenido */
+.container-aboutus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-aboutus img {
+  padding: 4rem 0rem;
+  width: 20rem;
+}
+
+/* ≥ 1024px: 4 columnas (opcional) */
+@media (min-width: 1024px) {
+  .aboutus-section {
+    padding: 0;
+  }
+
+  .container-aboutus {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 5rem 10rem;
+  }
+
+  .container-aboutus img {
+    width: max-content;
+  }
+
+  .dif-container {
+    max-width: max-content;
+  }
+}
+
+/* Contact Form */
+.contact {
+  padding: 5rem 1.5rem;
+  background-color: var(--secondary);
+}
+
+.contact-container {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-header p {
+  color: var(--muted-foreground);
+  margin-bottom: 0.5rem;
+}
+
+.contact-header h2 {
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.contact-header .description {
+  color: var(--muted-foreground);
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.contact-form {
+  background-color: white;
+  padding: 3rem;
+  border: 2px solid var(--border);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  background-color: var(--secondary);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group-full {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 2rem 1.5rem;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: #f7f3e6;
+  color: #2b1915;
+  border-top: 1px solid #2b1915;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 5vw;
+  flex-wrap: wrap;
+}
+
+.footer-left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-left li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-left a {
+  text-decoration: none;
+  color: #2b1915;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.footer-left a:hover {
+  text-decoration: underline;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.footer-socials a img {
+  width: 22px;
+  height: 22px;
+  margin-left: 1rem;
+  filter: invert(10%) sepia(8%) saturate(200%) hue-rotate(355deg)
+    brightness(90%) contrast(90%);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-right {
+    align-items: flex-start;
+  }
+
+  .footer-bottom h1 {
+    font-size: 16vw;
   }
 }

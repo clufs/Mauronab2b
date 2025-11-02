@@ -152,5 +152,117 @@
         </div>
       </div>
     </section>
+
+    <!-- Parte del *About Us resumido* -->
+    <section class="aboutus-section">
+      <div class="container-aboutus">
+        <div class="img-aboutus-container">
+          <img src="/public/about_us_1.jpg" alt="" class="about-img" />
+        </div>
+        <div>
+          <p>Nosotros</p>
+          <h2>Vajilla con identidad</h2>
+          <span>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+            iusto nobis, ad fugit pariatur expedita repudiandae quis at modi
+            laudantium quia? Voluptatem totam excepturi blanditiis? Repellendus
+            saepe perspiciatis, cumque maxime libero facere accusantium id,
+            delectus adipisci, quasi ipsam a esse in laudantium voluptas illo ea
+            tempore sunt nemo dolores veniam.
+          </span>
+
+          <div class="dif-container">
+            <div class="dif-card">
+              <h3 class="dif-title">Experiencia</h3>
+              <p class="dif-content">+3 años</p>
+            </div>
+            <div class="dif-card">
+              <h3 class="dif-title">Ventas</h3>
+              <p class="dif-content">+500</p>
+            </div>
+            <div class="dif-card">
+              <h3 class="dif-title">Clientes</h3>
+              <p class="dif-content">+10</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contact" class="contact">
+      <div class="contact-container">
+        <div class="contact-header">
+          <p>Contacto</p>
+          <h2>Hablemos de tu Proyecto</h2>
+          <p class="description">
+            Completa el formulario y nuestro equipo te contactará en menos de 24
+            horas para discutir los detalles de tu pedido.
+          </p>
+        </div>
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nombre Completo*</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="company">Empresa*</label>
+              <input type="text" id="company" name="company" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email*</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+          </div>
+          <div class="form-group form-group-full">
+            <label for="message">Mensaje*</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Cuéntanos sobre tu proyecto, tipo de negocio, cantidad estimada de piezas..."
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Enviar Solicitud
+          </button>
+        </form>
+      </div>
+    </section>
   </body>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <ul>
+          <li><a href="#">Acerca de mi</a></li>
+          <li><a href="#">Contactanos</a></li>
+          <li><a href="#">Galeria</a></li>
+
+          <li><a href="#">Pregutas Frecuentes</a></li>
+          <li><a href="#">Terminos y Condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-socials">
+          <a href="#"><img src="instagram.svg" alt="Instagram" /></a>
+          <a href="#"><img src="twitter.svg" alt="Twitter" /></a>
+          <a href="#"><img src="facebook.svg" alt="Facebook" /></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="footer-bottom">
+      <h1>MAURONA</h1>
+    </div> -->
+  </footer>
 </html>
