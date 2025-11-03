@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,23 +7,11 @@
 
     <link rel="icon" href="public/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/globals.css" />
+    <script type="module" src="/components/index.js"></script>
   </head>
 
   <body>
-    <header class="header">
-      <div class="header-container">
-        <div class="header-logo">
-          <img src="/public/logo.svg" alt="Maurona Logo" />
-        </div>
-        <nav class="nav">
-          <a href="#products">Catálogo</a>
-          <a href="#galery">Galeria</a>
-          <a href="#about">Nosotros</a>
-          <a href="#contact">Contacto</a>
-        </nav>
-        <div class="mobile-menu">☰</div>
-      </div>
-    </header>
+    <my-header></my-header>
 
     <section class="hero">
       <!-- VIDEO de fondo solo mobile -->
@@ -35,8 +23,9 @@
           playsinline
           loop
           src="/public/heroVideo.mp4"
-          poster="/public/hero-poster.jpg"
-        ></video>
+        >
+          >
+        </video>
         <div class="hero-gradient"></div>
       </div>
 
@@ -65,7 +54,7 @@
     </section>
 
     <!-- Parte de los productos -->
-    <section class="products">
+    <!-- <section class="products">
       <div class="section-header">
         <p>BAsfasd</p>
         <h2>Nuestros productos</h2>
@@ -151,7 +140,8 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+    <my-homeproducts></my-homeproducts>
 
     <!-- Parte del *About Us resumido* -->
     <section class="aboutus-section">
@@ -239,30 +229,5 @@
     </section>
   </body>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-left">
-        <ul>
-          <li><a href="#">Acerca de mi</a></li>
-          <li><a href="#">Contactanos</a></li>
-          <li><a href="#">Galeria</a></li>
-
-          <li><a href="#">Pregutas Frecuentes</a></li>
-          <li><a href="#">Terminos y Condiciones</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-right">
-        <div class="footer-socials">
-          <a href="#"><img src="instagram.svg" alt="Instagram" /></a>
-          <a href="#"><img src="twitter.svg" alt="Twitter" /></a>
-          <a href="#"><img src="facebook.svg" alt="Facebook" /></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="footer-bottom">
-      <h1>MAURONA</h1>
-    </div> -->
-  </footer>
+  <my-footer></my-footer>
 </html>
