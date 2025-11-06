@@ -10,105 +10,16 @@ export class HomeProducts extends HTMLElement {
 
     wrapper.classList.add("products");
 
-    // wrapper.innerHTML = `
-
-    //   <div class="section-header">
-    //     <p>BAsfasd</p>
-    //     <h2>Nuestros productos</h2>
-    //   </div>
-
-    //   <div class="product-grid">
-    //     <div class="product-card">
-    //       <div class="product-image">
-    //         <img
-    //           src="https://images.unsplash.com/photo-1587560555570-4d3f84dcee05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-    //           alt="Bowl Artesanal"
-    //         />
-    //       </div>
-    //       <div class="product-info">
-    //         <p class="product-category">Vajilla</p>
-    //         <h3 class="product-name">Bowl Artesanal</h3>
-    //         <p class="product-min-order">Pedido mínimo: 24 piezas</p>
-    //       </div>
-    //     </div>
-    //     <div class="product-card">
-    //       <div class="product-image">
-    //         <img
-    //           src="https://images.unsplash.com/photo-1691678916234-34bb2512c7de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-    //           alt="Florero Minimalista"
-    //         />
-    //       </div>
-    //       <div class="product-info">
-    //         <p class="product-category">Decoración</p>
-    //         <h3 class="product-name">Florero Minimalista</h3>
-    //         <p class="product-min-order">Pedido mínimo: 12 piezas</p>
-    //       </div>
-    //     </div>
-    //     <div class="product-card">
-    //       <div class="product-image">
-    //         <img
-    //           src="https://images.unsplash.com/photo-1591632288574-a387f820a1ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-    //           alt="Plato Signature"
-    //         />
-    //       </div>
-    //       <div class="product-info">
-    //         <p class="product-category">Vajilla</p>
-    //         <h3 class="product-name">Plato Signature</h3>
-    //         <p class="product-min-order">Pedido mínimo: 36 piezas</p>
-    //       </div>
-    //     </div>
-    //     <div class="product-card">
-    //       <div class="product-image">
-    //         <img
-    //           src="https://images.unsplash.com/photo-1611152171907-886a565484b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-    //           alt="Taza de Café"
-    //         />
-    //       </div>
-    //       <div class="product-info">
-    //         <p class="product-category">Vajilla</p>
-    //         <h3 class="product-name">Taza de Café</h3>
-    //         <p class="product-min-order">Pedido mínimo: 48 piezas</p>
-    //       </div>
-    //     </div>
-    //     <div class="product-card">
-    //       <div class="product-image">
-    //         <img
-    //           src="https://images.unsplash.com/photo-1738421525319-7a9d839bdf51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-    //           alt="Set de Mesa"
-    //         />
-    //       </div>
-    //       <div class="product-info">
-    //         <p class="product-category">Vajilla Completa</p>
-    //         <h3 class="product-name">Set de Mesa</h3>
-    //         <p class="product-min-order">Pedido mínimo: 12 sets</p>
-    //       </div>
-    //     </div>
-    //     <div class="product-card">
-    //       <div class="product-image">
-    //         <img
-    //           src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-    //           alt="Bowl Grande"
-    //         />
-    //       </div>
-    //       <div class="product-info">
-    //         <p class="product-category">Servicio</p>
-    //         <h3 class="product-name">Bowl Grande</h3>
-    //         <p class="product-min-order">Pedido mínimo: 18 piezas</p>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    // `;
-
     wrapper.innerHTML = `
-        <div class="section-name">
-        <p>Catalogo</p>
-        <h2>Mis productos</h2>
-        </div>
+
 
         <div class="product-grid" id="grid">
         <p>Cargando Productos...</p>
+
         </div>
+        <button>Ver Catalogo completo</button>
+
+
     `;
     const style = document.createElement("style");
     style.textContent = `
@@ -161,7 +72,7 @@ body {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(1 minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -172,7 +83,6 @@ body {
 .product-image {
   position: relative;
   aspect-ratio: 1;
-  margin-bottom: 1rem;
   overflow: hidden;
   background-color: white;
 }
@@ -235,37 +145,28 @@ body {
 
     const products = await getAllProducts();
 
-    console.log(products);
+    const six = products.slice(0, 6);
 
-    grid.innerHTML = products
+    console.log({ productsFromComponents: products });
+
+    grid.innerHTML = six
       .map((product) => {
         const image =
-          product.image ??
-          `https://placehold.co/600x400?text=${product.nombre}`;
+          product.image ?? `https://placehold.co/600x400?text=${product.name}`;
 
-        const minOrder = product.MinOrder || product.PedidoMinimo || "1 unidad";
+        const minOrder =
+          product.minQuantity || product.PedidoMinimo || "1 unidad";
 
         return `
             <div class="product-card">
                 <div class="product-image">
-                    <img src="${image}" alt="${product.nombre}" /> 
-                </div>
-
-                <div class="product-info">
-                    
-                    <h3 class="product-name">${product.nombre}</h3>
-                    ${
-                      minOrder
-                        ? `<p class="product-min-order">Pedido mínimo: ${minOrder}</p>`
-                        : ""
-                    }
-
-
+                    <img src="${image}" alt="${product.name}" />
                 </div>
 
             </div>
         `;
       })
+
       .join("");
   }
 }

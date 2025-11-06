@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/globals.css" />
+    <script type="module" src="/components/index.js"></script>
+    <script type="module" src="./components/filters.js"></script>
+    <script type="module" src="./components/productGrid.js"></script>
+
+    <title>Productos</title>
+  </head>
+  <style>
+    .catalogo {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 1024px) {
+      .catalogo {
+        grid-template-columns: 280px 1fr; /* sidebar + grid */
+        align-items: start;
+      }
+    }
+  </style>
+
+  <main style="gap: 2rem; padding: 2rem; padding-top: 5rem">
+    <my-header></my-header>
+
+    <section class="catalogo">
+      <filter-component></filter-component>
+      <productgrid-component></productgrid-component>
+    </section>
+  </main>
+
+  <my-footer></my-footer>
+</html>

@@ -157,6 +157,33 @@ export class Header extends HTMLElement {
     btn?.addEventListener("click", () => {
       mobileNav.classList.toggle("open");
     });
+
+    // Ocultar/mostrar header según scroll
+    const wrapper = this.shadowRoot.querySelector(".header");
+    wrapper.style.transition = "opacity 0.35s ease";
+
+    const hero = document.querySelector(".hero");
+
+    function onScroll() {
+      // esto es para que solo la animacion del header se ponga en mobile (el efecto de no mostrarlo)
+      if (window.innerWidth > 760) {
+        wrapper.style.opacity = "1";
+        wrapper.style.pointerEvents = "auto";
+        return;
+      }
+
+      const heroHeight = hero.offsetHeight;
+      if (window.scrollY > heroHeight - 50) {
+        wrapper.style.opacity = "1";
+        wrapper.style.pointerEvents = "auto";
+      } else {
+        wrapper.style.opacity = "0";
+        wrapper.style.pointerEvents = "none";
+      }
+    }
+
+    wrapper.style.opacity = "0";
+    window.addEventListener("scroll", onScroll);
   }
 }
 
