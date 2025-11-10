@@ -31,6 +31,7 @@ export const getAllProducts = async ({ force = false } = {}) => {
         : "Sin Colection";
 
       return {
+        id: rec.id,
         name: f.name || f.Name || "Producto",
         price: f.price,
         minQuantity: f.minQuantity,
@@ -44,7 +45,6 @@ export const getAllProducts = async ({ force = false } = {}) => {
       };
     })
   );
-
   return products;
 };
 

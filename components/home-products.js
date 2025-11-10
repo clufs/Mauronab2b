@@ -17,7 +17,7 @@ export class HomeProducts extends HTMLElement {
         <p>Cargando Productos...</p>
 
         </div>
-        <button>Ver Catalogo completo</button>
+        <a href="pages/products">Ver Catalogo completo</a>
 
 
     `;

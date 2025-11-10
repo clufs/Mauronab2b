@@ -1,4 +1,4 @@
-// maurona-header.js
+// maurona-header.js (versión robusta)
 export class Header extends HTMLElement {
   constructor() {
     super();
@@ -10,23 +10,25 @@ export class Header extends HTMLElement {
     wrapper.innerHTML = `
       <div class="header-container">
         <div class="header-logo">
-          <img src="/public/logo.svg" alt="Maurona Logo" />
+        <a href="/">
+        <img src="/public/logo.svg" alt="Maurona Logo" />
+        </a>
         </div>
         <nav class="nav">
-          <a href="#products">Catálogo</a>
-          <a href="#galery">Galeria</a>
-          <a href="#about">Nosotros</a>
-          <a href="#contact">Contacto</a>
+          <a href="/">Inicio</a>
+          <a href="/pages/products">Catálogo</a>
+          <a href="/pages/galery">Galeria</a>
+          <a href="/pages/about">Acerca de mi</a>
+          <a href="/pages/contact">Contacto</a>
         </nav>
-        <button class="mobile-menu" aria-label="Abrir menú">
-          ☰
-        </button>
+        <button class="mobile-menu" aria-label="Abrir menú">☰</button>
       </div>
       <nav class="mobile-nav">
-        <a href="#products">Catálogo</a>
-        <a href="#galery">Galeria</a>
-        <a href="#about">Nosotros</a>
-        <a href="#contact">Contacto</a>
+        <a href="/">Inicio</a>
+        <a href="/pages/products">Catálogo</a>
+        <a href="/pages/galery">Galeria</a>
+        <a href="/pages/about">Acerca de mi</a>
+        <a href="/pages/contact">Contacto</a>
       </nav>
     `;
 
@@ -43,7 +45,6 @@ export class Header extends HTMLElement {
         position: relative;
         z-index: 50;
       }
-
       .header {
         position: fixed;
         inset: 0 0 auto 0;
@@ -53,8 +54,9 @@ export class Header extends HTMLElement {
         border-bottom: 1px solid var(--border);
         height: var(--header-height);
         width: 100%;
+        opacity: 1; /* visible por defecto */
+        transition: opacity 0.35s ease;
       }
-
       .header-container {
         max-width: 1280px;
         margin: 0 auto;
@@ -65,63 +67,25 @@ export class Header extends HTMLElement {
         justify-content: space-between;
         gap: 1rem;
       }
+      .header-logo { display:flex; align-items:center; gap: .75rem; color: var(--primary); }
+      .header-logo img { height: 3rem; width: 3rem; display:block; }
 
-      .header-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        color: var(--primary);
-      }
+      .nav { display:flex; align-items:center; gap:2rem; }
+      .nav a { color: var(--muted-foreground); text-decoration:none; transition: color .2s; font-weight:500; }
+      .nav a:hover { color: var(--foreground); }
 
-      .header-logo img {
-        height: 3rem;
-        width: 3rem;
-        display: block;
-      }
+      .mobile-menu { display:none; background:none; border:none; font-size:30px; line-height:1; cursor:pointer; }
 
-      .nav {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-      }
-
-      .nav a {
-        color: var(--muted-foreground);
-        text-decoration: none;
-        transition: color 0.2s ease;
-        font-weight: 500;
-      }
-      .nav a:hover {
-        color: var(--foreground);
-      }
-
-      .mobile-menu {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 30px;
-        line-height: 1;
-        cursor: pointer;
-      }
-
-      /* menú mobile desplegable */
-      .mobile-nav {
-        display: none;
-      }
+      .mobile-nav { display:none; }
 
       @media (max-width: 768px) {
-        .nav {
-          display: none;
-        }
-        .mobile-menu {
-          display: block;
-        }
+        .nav { display:none; }
+        .mobile-menu { display:block; }
 
         .mobile-nav {
           position: fixed;
           top: var(--header-height);
-          left: 0;
-          right: 0;
+          left: 0; right: 0;
           background: rgba(253, 252, 251, 0.98);
           display: flex;
           flex-direction: column;
@@ -133,19 +97,16 @@ export class Header extends HTMLElement {
           opacity: 0;
           transition: transform 0.15s ease, opacity 0.15s ease;
         }
-        .mobile-nav a {
-          text-decoration: none;
-          color: var(--foreground);
-          font-weight: 500;
-        }
-        .mobile-nav.open {
-          transform: scaleY(1);
-          opacity: 1;
-        }
+        .mobile-nav a { text-decoration:none; color: var(--foreground); font-weight:500; }
+        .mobile-nav.open { transform: scaleY(1); opacity: 1; }
       }
     `;
 
     this.shadowRoot.append(style, wrapper);
+
+    // refs
+    this._wrapper = wrapper;
+    this._onScroll = null;
     this._mobileNav = null;
   }
 
@@ -158,21 +119,37 @@ export class Header extends HTMLElement {
       mobileNav.classList.toggle("open");
     });
 
-    // Ocultar/mostrar header según scroll
-    const wrapper = this.shadowRoot.querySelector(".header");
-    wrapper.style.transition = "opacity 0.35s ease";
+    // cerrar menú al hacer click en un link
+    mobileNav?.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => mobileNav.classList.remove("open"));
+    });
 
+    // lógica de mostrar/ocultar solo si existe .hero en la página
     const hero = document.querySelector(".hero");
 
-    function onScroll() {
-      // esto es para que solo la animacion del header se ponga en mobile (el efecto de no mostrarlo)
+    if (!hero) {
+      // No hay hero -> siempre visible y sin listener
+      this._wrapper.style.opacity = "1";
+      this._wrapper.style.pointerEvents = "auto";
+      return;
+    }
+
+    const wrapper = this._wrapper;
+
+    const onScroll = () => {
+      // Solo ocultar en mobile
       if (window.innerWidth > 760) {
         wrapper.style.opacity = "1";
         wrapper.style.pointerEvents = "auto";
         return;
       }
-
-      const heroHeight = hero.offsetHeight;
+      const heroHeight = hero?.offsetHeight ?? 0; // SAFE
+      if (heroHeight === 0) {
+        // Algo raro con el layout → mostrar
+        wrapper.style.opacity = "1";
+        wrapper.style.pointerEvents = "auto";
+        return;
+      }
       if (window.scrollY > heroHeight - 50) {
         wrapper.style.opacity = "1";
         wrapper.style.pointerEvents = "auto";
@@ -180,10 +157,27 @@ export class Header extends HTMLElement {
         wrapper.style.opacity = "0";
         wrapper.style.pointerEvents = "none";
       }
+    };
+
+    // estado inicial (mobile: oculto hasta salir del hero)
+    if (window.innerWidth <= 760) {
+      this._wrapper.style.opacity = "0";
+      this._wrapper.style.pointerEvents = "none";
+    } else {
+      this._wrapper.style.opacity = "1";
+      this._wrapper.style.pointerEvents = "auto";
     }
 
-    wrapper.style.opacity = "0";
-    window.addEventListener("scroll", onScroll);
+    this._onScroll = onScroll;
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+  }
+
+  disconnectedCallback() {
+    // limpiar listener si se desmonta el header (p.ej. navegación SPA)
+    if (this._onScroll) {
+      window.removeEventListener("scroll", this._onScroll);
+      this._onScroll = null;
+    }
   }
 }
 

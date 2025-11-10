@@ -28,6 +28,8 @@ export class ProductGrid extends HTMLElement {
       }
 
       .product-card {
+        color: inherit;
+        text-decoration:none;
         background: white;
         transition: transform 0.25s ease, box-shadow 0.25s ease;
         overflow: hidden;
@@ -147,6 +149,7 @@ export class ProductGrid extends HTMLElement {
 
     grid.innerHTML = list
       .map((product) => {
+        const id = product.id ?? product.slug ?? crypto.randomUUID();
         const image =
           product.image ??
           `https://placehold.co/600x800?text=${encodeURIComponent(
@@ -155,19 +158,38 @@ export class ProductGrid extends HTMLElement {
         const name = product.name ?? "Producto";
         const price = formatAR(product.price ?? 0);
 
+        // Link a la página de detalle con ?id=
         return `
-        <div class="product-card">
-          <div class="product-image">
-            <img src="${image}" alt="${name}" loading="lazy" />
-          </div>
-          <div class="product-info">
-            <p class="product-name">${name}</p>
-            <p class="product-price">${price}</p>
-          </div>
-        </div>
-      `;
+    <a class="product-card" href="/pages/products/product.html?id=${encodeURIComponent(
+      id
+    )}" data-id="${id}">
+      <div class="product-image">
+        <img src="${image}" alt="${name}" loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="product-name">${name}</p>
+        <p class="product-price">${price}</p>
+      </div>
+    </a>
+  `;
       })
       .join("");
+
+    // justo después de setear grid.innerHTML
+    grid.querySelectorAll(".product-card").forEach((card) => {
+      card.addEventListener("click", (e) => {
+        const id = card.dataset.id;
+        // Buscamos el producto original para snapshot
+        const prod = list.find((p) => (p.id ?? p.slug) == id);
+
+        console.log(prod);
+
+        if (prod) {
+          localStorage.setItem("selectedProduct", JSON.stringify(prod));
+        }
+        // No prevenimos la navegación; que siga al href
+      });
+    });
   }
 }
 

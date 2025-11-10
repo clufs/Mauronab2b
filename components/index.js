@@ -1,6 +1,7 @@
 import { Header } from "./header.js";
 import { Footer } from "./footer.js";
 import { HomeProducts } from "./home-products.js";
+import { ContactComponent } from "./contact-section.js";
 
 if (!customElements.get("my-header")) {
   customElements.define("my-header", Header);
