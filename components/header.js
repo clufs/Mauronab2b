@@ -1,4 +1,3 @@
-// maurona-header.js (versión robusta)
 export class Header extends HTMLElement {
   constructor() {
     super();
@@ -104,7 +103,6 @@ export class Header extends HTMLElement {
 
     this.shadowRoot.append(style, wrapper);
 
-    // refs
     this._wrapper = wrapper;
     this._onScroll = null;
     this._mobileNav = null;
@@ -119,16 +117,13 @@ export class Header extends HTMLElement {
       mobileNav.classList.toggle("open");
     });
 
-    // cerrar menú al hacer click en un link
     mobileNav?.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", () => mobileNav.classList.remove("open"));
     });
 
-    // lógica de mostrar/ocultar solo si existe .hero en la página
     const hero = document.querySelector(".hero");
 
     if (!hero) {
-      // No hay hero -> siempre visible y sin listener
       this._wrapper.style.opacity = "1";
       this._wrapper.style.pointerEvents = "auto";
       return;
@@ -145,7 +140,6 @@ export class Header extends HTMLElement {
       }
       const heroHeight = hero?.offsetHeight ?? 0; // SAFE
       if (heroHeight === 0) {
-        // Algo raro con el layout → mostrar
         wrapper.style.opacity = "1";
         wrapper.style.pointerEvents = "auto";
         return;
@@ -159,7 +153,6 @@ export class Header extends HTMLElement {
       }
     };
 
-    // estado inicial (mobile: oculto hasta salir del hero)
     if (window.innerWidth <= 760) {
       this._wrapper.style.opacity = "0";
       this._wrapper.style.pointerEvents = "none";
@@ -173,7 +166,6 @@ export class Header extends HTMLElement {
   }
 
   disconnectedCallback() {
-    // limpiar listener si se desmonta el header (p.ej. navegación SPA)
     if (this._onScroll) {
       window.removeEventListener("scroll", this._onScroll);
       this._onScroll = null;

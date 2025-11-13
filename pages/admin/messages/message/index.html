@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mensaje | Panel</title>
+    <link rel="stylesheet" href="/globals.css" />
+    <script type="module" src="../../Components/header.js"></script>
+    <script type="module" src="./index.js"></script>
+  </head>
+
+  <body>
+    <admin-header></admin-header>
+
+    <main class="message-detail">
+      <div class="container">
+        <a href="../" class="back-link">Volver a mensajes</a>
+
+        <div class="message-card">
+          <h2 id="msg-name">Cargando...</h2>
+          <p id="msg-company"></p>
+          <p id="msg-date"></p>
+
+          <div class="info">
+            <p><strong>Email:</strong> <span id="msg-email"></span></p>
+            <p><strong>Teléfono:</strong> <span id="msg-phone"></span></p>
+
+            <p>
+              <strong>Estado:</strong>
+              <span id="msg-status" class="pill">...</span>
+            </p>
+          </div>
+
+          <div class="divider"></div>
+
+          <p id="msg-message" class="message-text"></p>
+        </div>
+      </div>
+    </main>
+
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 3rem auto;
+        padding: 1rem;
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      .message-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        padding: 1.5rem 2rem;
+      }
+      .message-card h2 {
+        margin: 0 0 0.3rem 0;
+      }
+      .message-card p {
+        margin: 0.2rem 0;
+      }
+      .divider {
+        margin: 1rem 0;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .message-text {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+      .info {
+        font-size: 0.95rem;
+        color: #444;
+      }
+      .pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .pill.recibido {
+        background: #1a73e8;
+      } /* Recibido = azul */
+      .pill.respondido {
+        background: #0f9d58;
+      } /* Respondido = verde */
+
+      .btn-small {
+        display: inline-block;
+        margin-left: 0.5rem;
+        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
+        line-height: 1;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        background: #f6f8fa;
+        cursor: pointer;
+      }
+      .btn-small:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .muted {
+        margin-left: 0.5rem;
+        font-size: 0.85rem;
+        color: #666;
+      }
+    </style>
+  </body>
+</html>

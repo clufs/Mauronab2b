@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Productos</title>
+    <link rel="stylesheet" href="/globals.css" />
+    <script type="module" src="../Components/header.js"></script>
+    <script type="module" src="./index.js"></script>
+  </head>
+
+  <body style="margin: 2rem auto; max-width: 1000px">
+    <admin-header></admin-header>
+
+    <a href="../">Volver</a>
+    <h1>Productos</h1>
+    <button id="create-btn" class="btn">+ Crear producto</button>
+
+    <p id="loading">Cargando productos...</p>
+
+    <table id="products-table" hidden>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Mínimo</th>
+          <th>Categoría</th>
+          <th>Colección</th>
+          <th>Tiempo de Produccion</th>
+          <th style="width: 110px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <style>
+      .btn {
+        padding: 0.5rem 0.85rem;
+        background: #1a73e8;
+        color: #fff;
+        border: 0;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #155ab8;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+      }
+      tbody tr {
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      tbody tr:hover {
+        background: #f6f9ff;
+      }
+      .link {
+        color: #1a73e8;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .muted {
+        color: #666;
+      }
+    </style>
+  </body>
+</html>

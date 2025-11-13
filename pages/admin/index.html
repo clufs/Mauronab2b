@@ -2,28 +2,35 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Dashboard (HTML + CSS)</title>
+    <title>Administracion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="module" src="./messages/components/index.js"></script>
+    <script type="module" src="./Components/header.js"></script>
+    <link rel="stylesheet" href="/globals.css" />
+    
 <body>
-<section class="catalogo">
-  <h2>Catálogo Mayorista</h2>
-
+  <admin-header></admin-header>
+  <section class="catalogo">
+  <h2>Productos</h2>
     <div class="stats">
     <div class="stat-card">
       <span class="stat-label">Productos disponibles</span>
       <span class="stat-value">4/6</span>
+      <a href="./products">Ver todos los <strong>productos</strong></a>
     </div>
     <div class="stat-card">
       <span class="stat-label">Categorías totales</span>
       <span class="stat-value">3</span>
+      <a href="./categories/">Ver todas las <b>categorias</b></a>
     </div>
     <div class="stat-card">
       <span class="stat-label">Colecciones</span>
       <span class="stat-value">3</span>
+      <a href="./collections/">Ver todas las <b>colecciones</b></a>
     </div>
   </div>
 
-  <table class="productos">
+  <!-- <table class="productos">
     <thead>
       <tr>
         <th>Producto</th>
@@ -91,63 +98,26 @@
         <td>2 semanas</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 </section>
 
 <section class="catalogo">
-  <h2>Mensajes</h2>
+     <h2>Mensajes</h2>
+      
+
     <div class="stats">
     <div class="stat-card">
-      <span class="stat-label">Mensajes totales</span>
-      <span class="stat-value">40</span>
+      <span class="stat-label">Mensajes Totales</span>
+      <span class="stat-value">45</span>
+      <a href="./messages">Ver todos los <strong>Mensajes</strong></a>
+
     </div>
     <div class="stat-card">
-      <span class="stat-label">Sin responder</span>
-      <span class="stat-value warn">20</span>
+      <span class="stat-label">Mensajes sin responder</span>
+      <span class="stat-value">3</span>
     </div>
-    <div class="stat-card">
-      <span class="stat-label">Respondidos</span>
-      <span class="stat-value ok">10</span>
-    </div>
+
   </div>
-  <table class="productos">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Empresa</th>
-        <th>Email</th>
-        <th>Mensaje</th>
-        <th>Fecha</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Lucía Fernández</td>
-        <td>Café Aromas</td>
-        <td>contacto@cafe.ar</td>
-        <td>30 tazas y 20 platos de la línea Andes.</td>
-        <td>05/11/2025</td>
-        <td><span class="pill recibido">Respondido</span></td>
-      </tr>
-      <tr>
-        <td>Tomás Velarde</td>
-        <td>Hotel Las Nubes</td>
-        <td>compras@lasnubes.com</td>
-        <td>Precio por 50 ensaladeras XL personalizadas.</td>
-        <td>06/11/2025</td>
-        <td><span class="pill enviado">Responder</span></td>
-      </tr>
-      <tr>
-        <td>Sofía Ruiz</td>
-        <td>Casa de Té Shanti</td>
-        <td>hola@shanti.ar</td>
-        <td>Quiero tazas para regalos empresariales.</td>
-        <td>07/11/2025</td>
-        <td><span class="pill recibido">Respondido</span></td>
-      </tr>
-    </tbody>
-  </table>
 </section>
 
 </body>
@@ -169,12 +139,18 @@
     color: #222;
   }
 
-  /* ====== Stats cards ====== */
   .stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.9rem;
     margin: 0 auto 1.25rem;
+  }
+
+  .stats a {
+    text-decoration: underline;
+    color: #222;
+    font-size: .9rem;
+    font-weight: normal;
   }
 
   .stat-card {
@@ -198,14 +174,15 @@
     color: #222;
     letter-spacing: -0.02em;
   }
-  .stat-value.ok { color: #0f9d58; }   /* verde */
-  .stat-value.warn { color: #e67e22; } /* naranja */
+  .stat-value.ok { color: #0f9d58; }   
+  .stat-value.warn { color: #e67e22; } 
 
   @media (max-width: 720px) {
-    .stats { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr;
+      margin: 30px;
+     }
   }
 
-  /* ====== Tablas ====== */
   .productos {
     width: 100%;
     border-collapse: collapse;

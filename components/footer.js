@@ -3,33 +3,33 @@ export class Footer extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    const wrapper = document.createElement("footer");
+    // const wrapper = document.createElement("footer");
 
-    wrapper.classList.add("footer");
+    // wrapper.classList.add("footer");
 
-    wrapper.innerHTML = `
-      <div class="footer">
-        <div class="footer-content">
-          <div class="footer-left">
-            <ul>
-              <li><a href="#">Acerca de mi</a></li>
-              <li><a href="#">Contactanos</a></li>
-              <li><a href="#">Galeria</a></li>
-              <li><a href="#">Pregutas Frecuentes</a></li>
-              <li><a href="#">Terminos y Condiciones</a></li>
-            </ul>
-          </div>
+    // wrapper.innerHTML = `
+    //   <div class="footer">
+    //     <div class="footer-content">
+    //       <div class="footer-left">
+    //         <ul>
+    //           <li><a href="#">Acerca de mi</a></li>
+    //           <li><a href="#">Contactanos</a></li>
+    //           <li><a href="#">Galeria</a></li>
+    //           <li><a href="#">Pregutas Frecuentes</a></li>
+    //           <li><a href="#">Terminos y Condiciones</a></li>
+    //         </ul>
+    //       </div>
 
-          <div class="footer-right">
-            <div class="footer-socials">
-              <a href="#"><img src="/public/instagram.svg" alt="Instagram" /></a>
-              <a href="#"><img src="/public/pinterest.svg" alt="Twitter" /></a>
-              <a href="#"><img src="/public/facebook.svg" alt="Facebook" /></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
+    //       <div class="footer-right">
+    //         <div class="footer-socials">
+    //           <a href="#"><img src="/public/instagram.svg" alt="Instagram" /></a>
+    //           <a href="#"><img src="/public/pinterest.svg" alt="Twitter" /></a>
+    //           <a href="#"><img src="/public/facebook.svg" alt="Facebook" /></a>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // `;
 
     const styles = document.createElement("style");
     styles.textContent = `
