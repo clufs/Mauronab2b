@@ -160,7 +160,7 @@ export class ProductGrid extends HTMLElement {
 
         // Link a la página de detalle con ?id=
         return `
-    <a class="product-card" href="/pages/products/product.html?id=${encodeURIComponent(
+    <a class="product-card" href="/pages/products/product?id=${encodeURIComponent(
       id
     )}" data-id="${id}">
       <div class="product-image">

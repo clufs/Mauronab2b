@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Maurona | Producto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="./index.css" />
+
+    <script type="module" src="./products.js"></script>
+    <script type="module" src="/components/index.js"></script>
+  </head>
+
+  <body>
+    <my-header></my-header>
+
+    <main class="product-main">
+      <div class="product-page">
+        <div class="product-back-wrap">
+          <button
+            class="product-back-btn"
+            id="backBtn"
+            type="button"
+            aria-label="Regresar"
+          >
+            ← Regresar
+          </button>
+        </div>
+
+        <div class="product-grid">
+          <!-- Columna izquierda: imagen -->
+          <section class="product-gallery">
+            <div class="product-main-img">
+              <img id="p-main-img" alt="Producto" loading="eager" />
+            </div>
+          </section>
+
+          <!-- Columna derecha: info -->
+          <section class="product-info">
+            <div>
+              <span class="product-badge">
+                <p id="p-collection">Colección</p>
+              </span>
+              <h1 class="product-title" id="p-title">Título</h1>
+              <p class="product-cat" id="p-category">Categoría</p>
+            </div>
+
+            <div class="product-price-box">
+              <div class="product-row">
+                <span class="product-label">Precio mayorista:</span>
+                <span class="product-value" id="p-price"></span>
+              </div>
+              <div class="product-row">
+                <span class="product-label">Pedido mínimo:</span>
+                <span id="p-min"></span>
+              </div>
+              <div class="product-row">
+                <span class="product-label">Tiempo de producción:</span>
+                <span id="p-lead"></span>
+              </div>
+            </div>
+
+            <div class="product-specs">
+              <div class="product-row" style="margin-bottom: 0.5rem">
+                <span class="product-label">Especificaciones</span>
+              </div>
+              <ul>
+                <li>
+                  <span class="spec-k">Capacidad:</span>
+                  <span class="spec-v" id="p-capacity"></span>
+                </li>
+                <li>
+                  <span class="spec-k">Ancho:</span>
+                  <span class="spec-v" id="p-width"></span>
+                </li>
+                <li>
+                  <span class="spec-k">Alto:</span>
+                  <span class="spec-v" id="p-height"></span>
+                </li>
+                <li>
+                  <span class="spec-k">Peso:</span>
+                  <span class="spec-v" id="p-weight"></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="product-actions">
+              <button id="favBtn" class="btn btn-outline" type="button">
+                ★ Agregar a favoritos
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- <my-footer></my-footer> -->
+
+    <!-- JS SIMPLE, AL FINAL DEL BODY -->
+    <!-- <script type="module" src="/pages/product/product.js"></script> -->
+  </body>
+</html>

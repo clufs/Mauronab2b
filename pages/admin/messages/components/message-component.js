@@ -61,9 +61,14 @@ export class MessagesTable extends HTMLElement {
         .pill {
           display:inline-block; padding:4px 10px; border-radius:30px;
           font-size:12px; font-weight:700; color:#fff;
+            cursor: pointer;
+
+
         }
-        .pill.recibido { background:#0f9d58; }
-        .pill.respondido  { background:#1a73e8; }
+        .pill.recibido { background:#0f9d58;   cursor: pointer;
+ }
+        .pill.respondido  { background:#1a73e8;   cursor: pointer;
+}
 
         @media (max-width:650px){
           .messages-table th, .messages-table td { font-size:13.5px; padding:10px; }
@@ -79,7 +84,7 @@ export class MessagesTable extends HTMLElement {
     const table = this.querySelector(".messages-table");
     const tbody = this.querySelector(".messages-table tbody");
 
-    loading.textContent = "Cargando mensajes...";
+    loading.textContent = "cargando...";
     table.hidden = true;
     tbody.innerHTML = "";
 

@@ -22,6 +22,8 @@ async function loadProducts() {
       return;
     }
 
+    console.log(products);
+
     const rows = products
       .map(
         (p) => `
@@ -31,8 +33,8 @@ async function loadProducts() {
         <td>${tdSafe(p.minQuantity)}</td>
         <td>${tdSafe(p.category)}</td>
         <td>${tdSafe(p.collection)}</td>
-        <td class="muted">${tdSafe(p.leadTime)} ${
-          tdSafe(p.leadTime) > 1 ? "semanas" : "semana"
+        <td class="muted"> ${
+          tdSafe(p.isAvailable) === true ? "disponible" : "no disponible"
         } </td>
         <td>
           <button class="link edit" data-id="${p.id}">Editar</button>
