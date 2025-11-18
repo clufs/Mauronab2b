@@ -40,7 +40,7 @@ function toggleFavorite(product) {
   if (!id) return false;
 
   const favs = loadFavorites();
-  const index = favs.findIndex((p) => p.id === id);
+  const index = favs.findIndex((p) => p.id === id); // te devuelve donde esta poci en el arreglo (-1 si no hay nada)
 
   if (index >= 0) {
     favs.splice(index, 1);
@@ -66,11 +66,11 @@ function toggleFavorite(product) {
 function updateFavButton(btn, isFav) {
   if (!btn) return;
   if (isFav) {
-    btn.textContent = "★ En favoritos";
+    btn.textContent = "En favoritos";
     btn.classList.remove("btn-outline");
     btn.classList.add("btn-primary");
   } else {
-    btn.textContent = "★ Agregar a favoritos";
+    btn.textContent = "Agregar a favoritos";
     btn.classList.remove("btn-primary");
     btn.classList.add("btn-outline");
   }

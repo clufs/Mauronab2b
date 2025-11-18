@@ -16,6 +16,14 @@
     <h1>Productos</h1>
     <button id="create-btn" class="btn">+ Crear producto</button>
 
+    <div class="search-bar">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Buscar por nombre, categoría o colección..."
+      />
+    </div>
+
     <p id="loading">Cargando productos...</p>
 
     <table id="products-table" hidden>
@@ -27,13 +35,26 @@
           <th>Categoría</th>
           <th>Colección</th>
           <th>Disponible</th>
-          <th style="width: 110px">Acciones</th>
+          <!-- <th style="width: 110px">Acciones</th> -->
         </tr>
       </thead>
       <tbody></tbody>
     </table>
 
     <style>
+      .search-bar {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      #search-input {
+        width: 100%;
+        max-width: 320px;
+        padding: 0.4rem 0.6rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 0.95rem;
+      }
+
       .btn {
         padding: 0.5rem 0.85rem;
         background: #1a73e8;
