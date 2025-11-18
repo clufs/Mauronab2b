@@ -122,11 +122,9 @@ export class MessagesTable extends HTMLElement {
       loading.textContent = "";
       table.hidden = false;
 
-      // Agregamos el listener a cada fila
       tbody.querySelectorAll("tr").forEach((tr) => {
         tr.addEventListener("click", () => {
           const id = tr.dataset.id;
-          // Si querés pasar el id en la URL:
           window.location.href = `./message/index.html?id=${id}`;
         });
       });

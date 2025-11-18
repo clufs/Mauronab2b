@@ -2,7 +2,6 @@ import { getAllProducts } from "../../../utils/getallProdudcts.js";
 
 const FAV_KEY = "maurona:favorites";
 
-/* Helpers chiquitos */
 function formatAR(n) {
   if (typeof n !== "number") return "sin datos";
   return n.toLocaleString("es-AR", {
@@ -16,7 +15,6 @@ function asText(v, unit) {
   return Number.isFinite(v) ? `${v} ${unit}` : v ?? "sin datos";
 }
 
-/* LocalStorage de favoritos */
 function loadFavorites() {
   try {
     const raw = localStorage.getItem(FAV_KEY);
@@ -38,19 +36,17 @@ function isFavorite(id) {
 }
 
 function toggleFavorite(product) {
-  const id = (product.id ?? product.slug)?.toString();
+  const id = product.id?.toString();
   if (!id) return false;
 
   const favs = loadFavorites();
   const index = favs.findIndex((p) => p.id === id);
 
   if (index >= 0) {
-    // Quitar
     favs.splice(index, 1);
     saveFavorites(favs);
     return false;
   } else {
-    // Agregar
     const img =
       Array.isArray(product.imgsUrls) && product.imgsUrls.length
         ? product.imgsUrls[0]

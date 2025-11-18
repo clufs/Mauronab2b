@@ -82,7 +82,6 @@ export class AdminHeader extends HTMLElement {
       .spacer{ height: var(--h); display:block; }
     `;
 
-    // spacer para empujar contenido
     const spacer = document.createElement("div");
     spacer.className = "spacer";
 
@@ -95,17 +94,14 @@ export class AdminHeader extends HTMLElement {
   }
 
   connectedCallback() {
-    // resaltar link activo por pathname
     this._highlightActive();
 
-    // menú móvil
     this._burger?.addEventListener("click", () => this._toggleMobile());
     this._mobile
       ?.querySelectorAll("a")
       .forEach((a) => a.addEventListener("click", () => this._closeMobile()));
     document.addEventListener("keydown", this._escClose);
 
-    // sombra al hacer scroll
     this._onScroll = () => {
       if (window.scrollY > 4) this._root.classList.add("elev");
       else this._root.classList.remove("elev");
@@ -113,7 +109,6 @@ export class AdminHeader extends HTMLElement {
     this._onScroll();
     window.addEventListener("scroll", this._onScroll, { passive: true });
 
-    // tema claro/oscuro (simple toggle con data-theme en html)
     this._themeBtn?.addEventListener("click", () => {
       const html = document.documentElement;
       const cur = html.getAttribute("data-theme");

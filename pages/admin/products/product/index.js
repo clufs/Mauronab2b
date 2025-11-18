@@ -66,20 +66,16 @@ async function setupCategoryField() {
     select.style.borderRadius = "6px";
     select.innerHTML = `<option value="">Seleccioná una categoría</option>`; //un ayuda placeholder
 
-    // Opciones desde el server
     for (const c of categories) {
       const opt = document.createElement("option");
-      // Ajustá estos nombres según lo que devuelve getAllCategories()
       opt.value = c.id; // por ejemplo, el ID de Airtable
       opt.textContent = c.name; // nombre legible
       select.appendChild(opt);
     }
 
-    // Reemplazamos el input viejo por el select dentro del mismo <label>
     const label = catInput.parentElement;
     label.replaceChild(select, catInput);
 
-    // Actualizamos la referencia para el submit
     catInput = select;
 
     const selectCol = document.createElement("select");
@@ -92,8 +88,8 @@ async function setupCategoryField() {
 
     for (const c of collections) {
       const opt = document.createElement("option");
-      opt.value = c.id; // por ejemplo, el ID de Airtable
-      opt.textContent = c.name; // nombre legible
+      opt.value = c.id;
+      opt.textContent = c.name;
       selectCol.appendChild(opt);
     }
 

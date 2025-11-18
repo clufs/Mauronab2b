@@ -48,17 +48,14 @@ async function loadProducts() {
     loading.hidden = true;
     table.hidden = false;
 
-    // click en fila → editar
     tbody.querySelectorAll("tr").forEach((tr) => {
       tr.addEventListener("click", (e) => {
-        // si clickean el botón, también edita (evitamos doble navegación)
         const id = tr.dataset.id;
         if (!id) return;
         window.location.href = `./product/index.html?id=${id}`;
       });
     });
 
-    // botón Editar (por si preferís solo botón)
     tbody.querySelectorAll("button.edit").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.stopPropagation();

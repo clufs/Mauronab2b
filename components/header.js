@@ -134,13 +134,12 @@ export class Header extends HTMLElement {
     const wrapper = this._wrapper;
 
     const onScroll = () => {
-      // Solo ocultar en mobile
       if (window.innerWidth > 760) {
         wrapper.style.opacity = "1";
         wrapper.style.pointerEvents = "auto";
         return;
       }
-      const heroHeight = hero?.offsetHeight ?? 0; // SAFE
+      const heroHeight = hero?.offsetHeight ?? 0;
       console.log(heroHeight);
 
       if (heroHeight === 0) {
