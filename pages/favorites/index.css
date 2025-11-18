@@ -1,0 +1,68 @@
+.favoritos-page {
+  padding: 5rem 1.5rem;
+}
+
+.favoritos-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.favoritos-title {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: -0.03em;
+}
+
+.favoritos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1rem;
+  border: 1px solid var(--border);
+  background: white;
+}
+
+.fav-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.fav-info {
+  flex: 1;
+}
+
+.fav-name {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.fav-price {
+  opacity: 0.7;
+}
+
+.fav-remove {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.fav-remove:hover {
+  background: var(--secondary);
+}
+
+.favoritos-footer {
+  margin-top: 2rem;
+  text-align: center;
+}

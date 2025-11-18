@@ -1,6 +1,6 @@
 import { Header } from "./header.js";
 import { Footer } from "./footer.js";
-import { HomeProducts } from "./home-products.js";
+import { FullscreenProducts } from "./home-products.js";
 import { ContactComponent } from "./contact-section.js";
 
 if (!customElements.get("my-header")) {
@@ -11,5 +11,5 @@ if (!customElements.get("my-footer")) {
 }
 
 if (!customElements.get("my-homeproducts")) {
-  customElements.define("my-homeproducts", HomeProducts);
+  customElements.define("my-homeproducts", FullscreenProducts);
 }

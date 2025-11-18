@@ -127,17 +127,14 @@ export class Filter extends HTMLElement {
   }
 
   connectedCallback() {
-    // Emit inicial
     this._emitFilters();
 
-    // Cambios en checkboxes
     this.shadowRoot.addEventListener("change", (e) => {
       if (e.target && e.target.matches('input[type="checkbox"]')) {
         this._emitFilters();
       }
     });
 
-    // Botón limpiar
     this.shadowRoot.querySelector(".clear")?.addEventListener("click", () => {
       this.shadowRoot
         .querySelectorAll('input[type="checkbox"]')

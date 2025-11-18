@@ -1,172 +1,226 @@
-import { getAllProducts } from "../utils/getallProdudcts.js";
-
-export class HomeProducts extends HTMLElement {
+export class FullscreenProducts extends HTMLElement {
   constructor() {
     super();
 
     this.attachShadow({ mode: "open" });
 
-    const wrapper = document.createElement("section");
-
-    wrapper.classList.add("products");
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("container");
 
     wrapper.innerHTML = `
+      <!-- PRODUCTO 1 -->
+      <section class="product-page">
+        <div class="inner">
+          <div class="left-info">
+            <h2>Tazas</h2>
+          </div>
 
+          <div class="center-image">
+            <img src="./public/taza.jpg" />
+          </div>
 
-        <div class="product-grid" id="grid">
-        <p>Cargando Productos...</p>
-
+          <div class="right-desc">
+            <div class="desc-box">
+              Diseñadas para esos momentos de pausa: café, té o lo que te sostenga el día. 
+              Las tazas mantienen la calidez del material, con formas cómodas en la mano y 
+              un diseño que invita a usarlas todos los días.
+            </div>
+          </div>
         </div>
-        <a href="pages/products">Ver Catalogo completo</a>
+      </section>
 
+      <!-- PRODUCTO 2 -->
+      <section class="product-page">
+        <div class="inner">
+          <div class="left-info">
+            <h2>Platos</h2>
+          </div>
 
+          <div class="center-image">
+            <img src="/public/platos.jpg" />
+          </div>
+
+          <div class="right-desc">
+            <div class="desc-box">
+              Piezas amplias, equilibradas y pensadas para acompañar cada comida. 
+              Nuestros platos combinan líneas simples con el carácter de la cerámica artesanal, 
+              ofreciendo una base sólida y estética para cualquier preparación.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTO 3 -->
+      <section class="product-page">
+        <div class="inner">
+          <div class="left-info">
+            <h2>Bowls</h2>
+          </div>
+
+          <div class="center-image">
+            <img src="./public/bolw.jpg" />
+          </div>
+
+          <div class="right-desc">
+            <div class="desc-box">
+              Versátiles y esenciales. Los cuencos funcionan para todo: sopas, ensaladas, frutas 
+              o preparaciones pequeñas. Su forma contenida y su peso equilibrado los convierten 
+              en piezas prácticas sin perder la identidad artesanal.
+            </div>
+          </div>
+        </div>
+      </section>
     `;
+
     const style = document.createElement("style");
     style.textContent = `
+      :host {
+        display: block;
+        scroll-snap-type: y mandatory;
+      }
 
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-:root {
-  --background: #fdfcfb;
-  --foreground: #2d2d2d;
-  --primary: #1a5463;
-  --primary-foreground: #ffffff;
-  --secondary: #f5f1ea;
-  --muted-foreground: #6b6458;
-  --accent: #d4a574;
-  --border: rgba(26, 84, 99, 0.15);
+      .container {
+        width: 100%;
+      }
 
-  --header-height: 64px;
-}
+      /* Cada pantalla */
+      .product-page {
+        height: 100vh;
+        width: 100%;
+        scroll-snap-align: start;
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
+        display: flex;
+        align-items: center;
 
-  line-height: 1.6;
-}
+        padding-left: 4rem;
+        padding-right: 4rem;
+      }
 
-    .products {
-  padding: 5rem 1.5rem;
-  background-color: var(--secondary);
-}
+      /* Contenedor interno */
+      .inner {
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
 
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 2rem;
+        height: 100%;
+        align-items: center;
+      }
 
-.section-header h2 {
-  color: var(--foreground);
-}
+      /* Izquierda */
+      .left-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .4rem;
+      }
 
-.section-header p {
-  color: var(--muted-foreground);
-}
+      .left-info h2 {
+        font-size: 2.6rem;
+        margin-bottom: .4rem;
+      }
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
+      .left-info p {
+        font-size: 1.4rem;
+        opacity: .75;
+      }
 
-.product-card {
-  cursor: pointer;
-}
+      /* Centro – todas las imágenes del mismo tamaño máximo */
+      .center-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
 
-.product-image {
-  position: relative;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background-color: white;
-}
+        /* Tamaño “caja” común para todas */
+        max-height: 480px;
+        height: 100%;
+      }
 
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s;
-}
+      .center-image img {
+        max-height: 100%;
+        width: auto;
+        object-fit: contain; /* no corta la pieza */
+        display: block;
+      }
 
-.product-card:hover .product-image img {
-  transform: scale(1.05);
-}
+      /* Derecha */
+      .right-desc {
+        display: grid;
+        font-style: italic;
+      }
 
-.product-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
+      .desc-box {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: .9rem;
+        line-height: 1.3rem;
+      }
 
-.product-category {
-  color: var(--muted-foreground);
-  font-size: 0.875rem;
-}
+      /* -------------------
+         MOBILE
+      ------------------- */
+      @media (max-width: 1000px) {
+        .product-page {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
 
-.product-name {
-  color: var(--foreground);
-}
+        /* Pasamos a columna y centramos todo
+           para dejar aire arriba/abajo */
+        .inner {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;  /* centra el bloque en el alto */
+          align-items: center;
+          text-align: center;
+          gap: 1.2rem;
+          height: 100%;
+        }
 
-.product-min-order {
-  color: var(--muted-foreground);
-  opacity: 0.7;
-  font-size: 0.875rem;
-}
+        .left-info {
+          align-items: center;
+        }
 
-@media (min-width: 640px) {
-  .products {
-    padding: 5rem 10rem;
-  }
+        .left-info h2 {
+          font-size: 2.1rem;
+        }
 
-  .product-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
+        /* Imagen más acotada en alto pero consistente */
+        .center-image {
+          width: 100%;
+          max-width: 420px;
+          max-height: 320px;
+          height: auto;
+        }
 
-@media (min-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
+        .center-image img {
+          width: 100%;
+          height: auto;
+        }
 
+        /* Descripción cerca de la imagen */
+        .right-desc {
+          width: 100%;
+          max-width: 420px;
+        }
+
+        .desc-box {
+          font-size: .95rem;
+          line-height: 1.4rem;
+        }
+      }
     `;
+
     this.shadowRoot.append(style, wrapper);
-  }
-
-  //   ESta es uan funcion que se ejecuta ucnaod el componente se agrea a ldom
-  async connectedCallback() {
-    const grid = this.shadowRoot.querySelector("#grid");
-
-    const products = await getAllProducts();
-
-    const six = products.slice(0, 6);
-
-    console.log({ productsFromComponents: products });
-
-    grid.innerHTML = six
-      .map((product) => {
-        const image =
-          product.image ?? `https://placehold.co/600x400?text=${product.name}`;
-
-        const minOrder =
-          product.minQuantity || product.PedidoMinimo || "1 unidad";
-
-        return `
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="${image}" alt="${product.name}" />
-                </div>
-
-            </div>
-        `;
-      })
-
-      .join("");
   }
 }

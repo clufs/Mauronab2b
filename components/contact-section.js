@@ -64,6 +64,22 @@ export class ContactComponent extends HTMLElement {
 
     const style = document.createElement("style");
     style.textContent = `
+      .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
       .contact { padding: 5rem 1.5rem; background-color: var(--secondary); }
       .contact-container { max-width: 56rem; margin: 0 auto; }
       .contact-header { text-align: center; margin-bottom: 3rem; }

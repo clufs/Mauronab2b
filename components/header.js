@@ -15,19 +15,21 @@ export class Header extends HTMLElement {
         </div>
         <nav class="nav">
           <a href="/">Inicio</a>
+          <a href="/pages/favorites">Favoritos</a>
+
           <a href="/pages/products">Catálogo</a>
-          <a href="/pages/galery">Galeria</a>
-          <a href="/pages/about">Acerca de mi</a>
           <a href="/pages/contact">Contacto</a>
+          <a href="/pages/admin">Panel de Administracion</a>
+
         </nav>
         <button class="mobile-menu" aria-label="Abrir menú">☰</button>
       </div>
       <nav class="mobile-nav">
         <a href="/">Inicio</a>
         <a href="/pages/products">Catálogo</a>
-        <a href="/pages/galery">Galeria</a>
-        <a href="/pages/about">Acerca de mi</a>
         <a href="/pages/contact">Contacto</a>
+          <a href="/pages/admin">Panel de Administracion</a>
+
       </nav>
     `;
 
@@ -139,6 +141,8 @@ export class Header extends HTMLElement {
         return;
       }
       const heroHeight = hero?.offsetHeight ?? 0; // SAFE
+      console.log(heroHeight);
+
       if (heroHeight === 0) {
         wrapper.style.opacity = "1";
         wrapper.style.pointerEvents = "auto";

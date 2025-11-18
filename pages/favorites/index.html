@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/components/index.js"></script>
+    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="module" href="./index.js" />
+
+    <title>Favoritos</title>
+  </head>
+
+  <my-header></my-header>
+  <body>
+    <section class="favoritos-page">
+      <div class="favoritos-container">
+        <h1 class="favoritos-title">Mis Favoritos</h1>
+
+        <div class="favoritos-list">
+          <!-- ITEM 1 -->
+          <div class="fav-item">
+            <img
+              src="/public/taza.jpg"
+              class="fav-img"
+              alt="Producto favorito"
+            />
+
+            <div class="fav-info">
+              <h3 class="fav-name">Taza artesanal</h3>
+              <p class="fav-price">$12.000</p>
+            </div>
+
+            <button class="fav-remove">Quitar</button>
+          </div>
+
+          <!-- ITEM 2 -->
+          <div class="fav-item">
+            <img
+              src="/public/plato.jpg"
+              class="fav-img"
+              alt="Producto favorito"
+            />
+
+            <div class="fav-info">
+              <h3 class="fav-name">Plato playo</h3>
+              <p class="fav-price">$18.500</p>
+            </div>
+
+            <button class="fav-remove">Quitar</button>
+          </div>
+        </div>
+
+        <div class="favoritos-footer">
+          <a href="/pages/products" class="btn btn-primary">
+            Seguir viendo productos
+          </a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

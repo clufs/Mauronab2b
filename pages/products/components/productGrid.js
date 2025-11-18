@@ -151,7 +151,7 @@ export class ProductGrid extends HTMLElement {
       .map((product) => {
         const id = product.id ?? product.slug ?? crypto.randomUUID();
         const image =
-          product.image ??
+          product.imgsUrls[0] ??
           `https://placehold.co/600x800?text=${encodeURIComponent(
             product.name ?? "Producto"
           )}`;

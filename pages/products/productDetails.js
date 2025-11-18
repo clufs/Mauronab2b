@@ -10,7 +10,6 @@ export class ProductStatic2Col extends HTMLElement {
       "min",
       "leadtime",
       "main",
-      "thumbs",
       // dimensiones
       "capacity",
       "width",
@@ -30,7 +29,7 @@ export class ProductStatic2Col extends HTMLElement {
       price: "sin datos",
       min: "sin datos",
       leadTime: "sin datos",
-      main: "https://placehold.co/1200x1200?text=sin+imagen",
+      mainUrl: "https://placehold.co/1200x1200?text=sin+imagen",
       thumbs: [],
       capacity: "sin datos",
       width: "sin datos",
@@ -200,7 +199,7 @@ export class ProductStatic2Col extends HTMLElement {
     if (back) {
       back.addEventListener("click", () => {
         if (history.length > 1) history.back();
-        else window.location.href = "/pages/products";
+        else window.location.href = "/pages/products"; //regreasr
       });
     }
     this.#renderAll();
@@ -218,7 +217,7 @@ export class ProductStatic2Col extends HTMLElement {
     st.price = this.getAttribute("price") ?? st.price;
     st.min = this.getAttribute("min") ?? st.min;
     st.leadTime = this.getAttribute("leadtime") ?? st.leadTime;
-    st.main = this.getAttribute("main") ?? st.main;
+    st.mainUrl = this.getAttribute("main") ?? st.mainUrl;
 
     // dimensiones
     st.capacity = this.getAttribute("capacity") ?? st.capacity;
@@ -246,22 +245,7 @@ export class ProductStatic2Col extends HTMLElement {
     this.shadowRoot.getElementById("weight").textContent = st.weight;
 
     const $main = this.shadowRoot.getElementById("mainImage");
-    $main.src = st.main;
-
-    const $t = this.shadowRoot.getElementById("thumbs");
-    $t.innerHTML = "";
-    st.thumbs.forEach((src) => {
-      const d = document.createElement("div");
-      d.className = "thumb";
-      const img = document.createElement("img");
-      img.src = src || "https://placehold.co/300x300?text=sin+imagen";
-      img.loading = "lazy";
-      d.appendChild(img);
-      d.addEventListener("click", () => {
-        $main.src = img.src;
-      });
-      $t.appendChild(d);
-    });
+    $main.src = st.mainUrl;
   }
 }
 customElements.define("product-static-2col", ProductStatic2Col);
@@ -274,13 +258,6 @@ const formatAR = (n) =>
         maximumFractionDigits: 0,
       })
     : "sin datos";
-
-const pickThumbs = (p) => {
-  const out = [];
-  if (Array.isArray(p.thumbs)) out.push(...p.thumbs);
-  if (p.image) out.unshift(p.image);
-  return out.length ? out : ["https://placehold.co/1200x1200?text=sin+imagen"];
-};
 
 const asText = (v, unit) =>
   Number.isFinite(v) ? `${v} ${unit}` : v ?? "sin datos";
@@ -315,9 +292,18 @@ const applyToComponent = (p) => {
   comp.setAttribute("height", asText(p.height, "cm"));
   comp.setAttribute("weight", asText(p.weight, "g"));
 
-  const thumbs = pickThumbs(p);
-  comp.setAttribute("main", thumbs[0]);
-  comp.setAttribute("thumbs", JSON.stringify(thumbs));
+  const fromImgsUrls =
+    Array.isArray(p.imgsUrls) && p.imgsUrls.length ? p.imgsUrls[0] : null;
+
+  const mainUrl =
+    fromImgsUrls || "https://placehold.co/1200x1200?text=sin+imagen";
+
+  console.log("mainUrl FINAL →", mainUrl);
+
+  comp.setAttribute("main", mainUrl);
+  console.log(mainUrl);
+
+  comp.setAttribute("main", mainUrl);
 
   document.title = `Maurona | ${p.name} ` ?? "Producto";
 };
@@ -327,17 +313,16 @@ const applyToComponent = (p) => {
 
   let product = null;
 
-  // 1) localStorage (snapshot)
   const raw = localStorage.getItem("selectedProduct");
   if (raw) {
     try {
       const parsed = JSON.parse(raw);
-      const pid = (parsed.id ?? parsed.slug)?.toString();
+      console.log(parsed);
+      const pid = parsed.id?.toString();
       if (!id || pid === id) product = parsed;
     } catch {}
   }
 
-  // 2) Buscar por ID si no hubo snapshot o no coincide
   if (!product && id) {
     try {
       const all = await getAllProducts();
@@ -358,8 +343,8 @@ const applyToComponent = (p) => {
       width: "sin datos",
       height: "sin datos",
       weight: "sin datos",
+      imgUrls: [],
       image: null,
-      thumbs: [],
     });
     return;
   }

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script type="module" src="./messages/components/index.js"></script>
     <script type="module" src="./Components/header.js"></script>
+    <script type="module" src="./index.js"></script>
+
     <link rel="stylesheet" href="/globals.css" />
     
 <body>
@@ -15,17 +17,17 @@
     <div class="stats">
     <div class="stat-card">
       <span class="stat-label">Productos disponibles</span>
-      <span class="stat-value">4/6</span>
+      <span class="stat-value"><span id="pr-available">-</span> / <span id="pr-total">-</span></span>
       <a href="./products">Ver todos los <strong>productos</strong></a>
     </div>
     <div class="stat-card">
       <span class="stat-label">Categorías totales</span>
-      <span class="stat-value">3</span>
+      <span class="stat-value" id="cats">-</span>
       <a href="./categories/">Ver todas las <b>categorias</b></a>
     </div>
     <div class="stat-card">
       <span class="stat-label">Colecciones</span>
-      <span class="stat-value">3</span>
+      <span class="stat-value" id="colls">-</span>
       <a href="./collections/">Ver todas las <b>colecciones</b></a>
     </div>
   </div>
@@ -108,13 +110,15 @@
     <div class="stats">
     <div class="stat-card">
       <span class="stat-label">Mensajes Totales</span>
-      <span class="stat-value">45</span>
+      <span class="stat-value" id="msg">-</span>
       <a href="./messages">Ver todos los <strong>Mensajes</strong></a>
 
     </div>
     <div class="stat-card">
       <span class="stat-label">Mensajes sin responder</span>
-      <span class="stat-value">3</span>
+      <span class="stat-value">
+        <span id="msg1">-</span> / <span id="msg3">-</span>
+      </span>
     </div>
 
   </div>
